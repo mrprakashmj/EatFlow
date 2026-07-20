@@ -62,21 +62,21 @@ export default function TeamSection() {
         {chefs.map((chef) => (
           <div
             key={chef.name}
-            className="flex flex-col gap-6 border border-[#e2e2e2] bg-white p-8 hover:bg-cream transition-all duration-300 ease-in-out"
+            className="flex flex-col gap-6 border border-[#e2e2e2] bg-white p-6 lg:p-8 hover:bg-cream transition-all duration-300 ease-in-out"
           >
             <div className="flex flex-col gap-1">
-              <h3 className="font-ubuntu text-[25px] font-semibold text-ink">
+              <h3 className="font-ubuntu text-[22px] lg:text-[25px] font-semibold text-ink">
                 {chef.name}
               </h3>
-              <p className="font-inter text-[18px] text-muted">{chef.role}</p>
+              <p className="font-inter text-[16px] lg:text-[18px] text-muted">{chef.role}</p>
             </div>
 
-            <div className="relative mx-auto my-[50px] h-[245px] w-[245px] overflow-hidden rounded-full">
+            <div className="relative mx-auto my-[30px] sm:my-[40px] lg:my-[50px] h-[180px] w-[180px] sm:h-[200px] sm:w-[200px] lg:h-[245px] lg:w-[245px] overflow-hidden rounded-full">
               <Image
                 src={chef.image}
                 alt={chef.name}
                 fill
-                sizes="245px"
+                sizes="(max-width: 640px) 180px, (max-width: 1024px) 200px, 245px"
                 className="object-cover"
               />
             </div>

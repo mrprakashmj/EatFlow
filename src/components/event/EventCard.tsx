@@ -28,7 +28,7 @@ export default function EventCard({ image, title, slug, date, time }: EventCardP
       </div>
 
       <Link href={`/event/${slug}`}>
-        <h3 className="font-ubuntu font-bold text-[30px] leading-[33px] text-ink hover:text-orange transition-colors">
+        <h3 className="font-ubuntu font-bold text-[24px] leading-[1.2] md:text-[30px] md:leading-[33px] text-ink hover:text-orange transition-colors">
           {title}
         </h3>
       </Link>

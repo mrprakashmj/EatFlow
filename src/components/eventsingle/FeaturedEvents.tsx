@@ -33,7 +33,7 @@ function FeaturedEventCard({ title, slug, image, time, date }: FeaturedEvent) {
       </div>
 
       <Link href={`/event/${slug}`}>
-        <h3 className="font-ubuntu font-bold text-[30px] leading-[33px] text-ink hover:text-orange transition-colors">
+        <h3 className="font-ubuntu font-bold text-[24px] leading-[1.2] md:text-[30px] md:leading-[33px] text-ink hover:text-orange transition-colors">
           {title}
         </h3>
       </Link>
@@ -43,7 +43,7 @@ function FeaturedEventCard({ title, slug, image, time, date }: FeaturedEvent) {
 
 export default function FeaturedEvents({ events }: FeaturedEventsProps) {
   return (
-    <section className="bg-white py-16 md:py-24 mb-[150px]">
+    <section className="bg-white pt-16 pb-[320px] sm:pb-[260px] md:pt-24 lg:pb-[230px]">
       <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16">
         <div className="mb-10 md:mb-14">
           <p className="mb-2 flex items-center gap-1 font-inter text-sm font-medium uppercase tracking-[1.6px] text-ink">

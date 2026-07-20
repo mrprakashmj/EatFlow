@@ -68,11 +68,11 @@ export default function Testimonial({ className = "" }: { className?: string }) 
   };
 
   return (
-    <section className={`mx-auto max-w-[1200px] px-6 py-20 lg:py-28 ${className}`}>
+    <section className={`mx-auto max-w-[1200px] px-6 py-10 lg:py-10 ${className}`}>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[45%_55%] items-center">
         {/* Left Side */}
-        <div className="flex flex-col justify-center bg-yellow pt-[45px] pb-[30px] pr-[55px] pl-[30px]">
-          <h2 className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[36px] sm:text-[45px] leading-[1.2] text-ink">
+        <div className="flex flex-col justify-center bg-yellow pt-8 pb-6 sm:pt-[45px] sm:pb-[30px] pr-6 sm:pr-[55px] pl-6 sm:pl-[30px]">
+          <h2 className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[30px] sm:text-[40px] lg:text-[45px] leading-[1.2] text-ink">
             What Our<br /> Customers Says<br /> About Us
           </h2>
           <div className="mt-8 bg-white p-5 w-max">
@@ -103,7 +103,7 @@ export default function Testimonial({ className = "" }: { className?: string }) 
         </div>
 
         {/* Right Side */}
-        <div className="flex h-full flex-col justify-center bg-white p-10 sm:p-14 lg:p-[50px] border border-[#f0f0f0] overflow-hidden">
+        <div className="flex h-full flex-col justify-center bg-white p-8 sm:p-10 lg:p-[50px] border border-[#f0f0f0] overflow-hidden">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}

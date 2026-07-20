@@ -122,32 +122,34 @@ export default function BookingSection() {
               Delicious dishes await at our restaurant. Explore our menu and find your new favorite flavors. Come dine with us today!
             </p>
 
-            <div className="mt-10">
-              <div className="flex items-center gap-3">
-                <Image src="/images/hour-icon.svg" alt="Clock" width={25} height={26} />
-                <h3 className="font-ubuntu font-bold text-ink text-[22px] sm:text-[25px]">
-                  Opening Hours
-                </h3>
+            <div className="mt-8 sm:mt-10 flex flex-wrap gap-8 sm:gap-12 lg:gap-16">
+              <div>
+                <div className="flex items-center gap-3">
+                  <Image src="/images/hour-icon.svg" alt="Clock" width={25} height={26} />
+                  <h3 className="font-ubuntu font-bold text-ink text-[22px] sm:text-[25px]">
+                    Opening Hours
+                  </h3>
+                </div>
+                <div className="mt-4 font-inter font-normal text-ink text-[17px] sm:text-[20px] leading-[30px] space-y-1">
+                  <p>Mon – Fri: 7.00am – 6.00pm</p>
+                  <p>Sat: 7.00am – 6.00pm</p>
+                  <p>Sun: 8.00am – 6.00pm</p>
+                </div>
               </div>
-              <div className="mt-4 font-inter font-normal text-ink text-[20px] leading-[30px] space-y-1">
-                <p>Mon – Fri: 7.00am – 6.00pm</p>
-                <p>Sat: 7.00am – 6.00pm</p>
-                <p>Sun: 8.00am – 6.00pm</p>
-              </div>
-            </div>
 
-            <div className="mt-10 flex flex-col gap-5">
-              <div className="flex items-center gap-4">
-                <Image src="/images/resveration_phone-icon.svg" alt="Phone" width={20} height={20} />
-                <a href="tel:564-643-4345" className="font-inter font-normal text-ink text-[20px] leading-[30px] hover:text-orange transition-colors">
-                  (564)-643-4345
-                </a>
-              </div>
-              <div className="flex items-center gap-4">
-                <Image src="/images/resveration_mail_icon.svg" alt="Email" width={20} height={20} />
-                <a href="mailto:info@eatflow.com" className="font-inter font-normal text-ink text-[20px] leading-[30px] hover:text-orange transition-colors">
-                  info@eatflow.com
-                </a>
+              <div className="flex flex-col justify-end pb-1 gap-5">
+                <div className="flex items-center gap-4">
+                  <Image src="/images/resveration_phone-icon.svg" alt="Phone" width={20} height={20} />
+                  <a href="tel:564-643-4345" className="font-inter font-normal text-ink text-[18px] sm:text-[20px] leading-[30px] hover:text-orange transition-colors">
+                    (564)-643-4345
+                  </a>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Image src="/images/resveration_mail_icon.svg" alt="Email" width={20} height={20} />
+                  <a href="mailto:info@eatflow.com" className="font-inter font-normal text-ink text-[18px] sm:text-[20px] leading-[30px] hover:text-orange transition-colors">
+                    info@eatflow.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>

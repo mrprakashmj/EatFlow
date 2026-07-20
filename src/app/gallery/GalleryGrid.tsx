@@ -75,8 +75,8 @@ export default function GalleryGrid() {
   );
 
   return (
-    <section className="bg-white py-20 lg:py-28">
-      <div className="mx-auto mb-[150px] max-w-[1200px] px-6">
+    <section className="bg-white pt-20 pb-[320px] sm:pb-[260px] lg:pt-28 lg:pb-[230px]">
+      <div className="mx-auto max-w-[1200px] px-6">
         <SectionTitle
           eyebrow="GALLERY"
           heading="We Make Fresh Dishes"

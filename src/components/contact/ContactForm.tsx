@@ -21,7 +21,7 @@ export default function ContactForm() {
   return (
     <section className="bg-white">
       <div className="container mx-auto max-w-[1200px] px-6 py-20 md:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-14 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[4fr_6fr] gap-14 lg:gap-10 items-start">
           
           {/* Info column */}
           <div>
@@ -31,23 +31,23 @@ export default function ContactForm() {
             </p>
 
             <div className="mt-10 space-y-8">
-              <div className="flex items-center gap-6">
-                <span className="shrink-0 flex items-center justify-center rounded-full bg-[#3baf6d] text-ink w-[70px] h-[70px]">
-                  <Image src="/images/phone-icon-dark.svg" alt="Phone" width={26} height={26} style={{ width: "auto", height: "auto" }} />
+              <div className="flex items-center gap-4 sm:gap-6">
+                <span className="shrink-0 flex items-center justify-center rounded-full bg-[#3baf6d] text-ink size-[50px] sm:size-[70px]">
+                  <Image src="/images/phone-icon-dark.svg" alt="Phone" width={26} height={26} className="w-[18px] sm:w-[26px] h-auto" />
                 </span>
-                <div>
-                  <p className="font-inter font-medium text-ink text-[18px] leading-[150%]">For Booking</p>
-                  <a href="tel:5646434345" className="font-ubuntu font-bold text-ink text-[30px] leading-[150%] hover:text-orange transition-colors block">(564)-643-4345</a>
+                <div className="flex-1 min-w-0">
+                  <p className="font-inter font-medium text-ink text-[16px] sm:text-[18px] leading-[150%]">For Booking</p>
+                  <a href="tel:5646434345" className="font-ubuntu font-bold text-ink text-[18px] sm:text-[24px] lg:text-[30px] leading-[1.3] hover:text-orange transition-colors block break-words">(564)-643-4345</a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-6">
-                <span className="shrink-0 flex items-center justify-center rounded-full bg-[#ffcf60] text-ink w-[70px] h-[70px]">
-                  <Image src="/images/mail-icon-dark.svg" alt="Mail" width={26} height={26} style={{ width: "auto", height: "auto" }} />
+              <div className="flex items-center gap-4 sm:gap-6">
+                <span className="shrink-0 flex items-center justify-center rounded-full bg-[#ffcf60] text-ink size-[50px] sm:size-[70px]">
+                  <Image src="/images/mail-icon-dark.svg" alt="Mail" width={26} height={26} className="w-[18px] sm:w-[26px] h-auto" />
                 </span>
-                <div>
-                  <p className="font-inter font-medium text-ink text-[18px] leading-[150%]">For Private Dining</p>
-                  <a href="mailto:info@eatflow.com" className="font-ubuntu font-bold text-ink text-[30px] leading-[150%] hover:text-orange transition-colors block">info@eatflow.com</a>
+                <div className="flex-1 min-w-0">
+                  <p className="font-inter font-medium text-ink text-[16px] sm:text-[18px] leading-[150%]">For Private Dining</p>
+                  <a href="mailto:info@eatflow.com" className="font-ubuntu font-bold text-ink text-[18px] sm:text-[24px] lg:text-[30px] leading-[1.3] hover:text-orange transition-colors block break-words">info@eatflow.com</a>
                 </div>
               </div>
             </div>

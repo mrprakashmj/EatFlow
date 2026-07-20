@@ -21,8 +21,8 @@ export default function ClientLogo() {
         }
       `}</style>
       
-      <div className="flex items-center gap-6">
-        <h3 className="shrink-0 font-heading text-[20px] font-medium uppercase text-ink">
+      <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+        <h3 className="shrink-0 font-heading text-[16px] sm:text-[20px] font-medium uppercase text-ink">
           Join our happy <span className="text-orange">1K+</span> sponsors worldwide!
         </h3>
         <div className="h-[2px] w-full bg-line" />

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, ShoppingCart, ChevronDown, Menu as MenuIcon, X, Phone, Mail } from "lucide-react";
@@ -28,60 +29,85 @@ const navLinks = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [isPagesOpen, setIsPagesOpen] = useState(false);
   const { toggleCart, itemCount } = useCart();
+  const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   return (
-    <header className="relative z-30 bg-ink">
-      <div className="mx-auto flex h-[80px] lg:h-[100px] max-w-[1920px] items-center justify-between">
+    <header ref={headerRef} className="relative z-30 bg-ink">
+      <div className="mx-auto flex h-[70px] lg:h-[100px] max-w-[1920px] items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex h-full items-center bg-ink px-6 lg:px-10">
-          <span className="font-[family-name:var(--font-display)] text-[26px] lg:text-[32px] text-white">
+        <a href="/" className="flex h-full items-center bg-ink px-4 sm:px-6 lg:px-10">
+          <span className="font-[family-name:var(--font-display)] text-[24px] lg:text-[32px] text-white">
             EatFlow<span className="text-orange">.</span>
           </span>
         </a>
 
-        {/* Nav links */}
+        {/* Nav links – desktop only */}
         <nav className="hidden xl:flex items-center gap-10">
-          {navLinks.map((link) => (
+          {navLinks.map((link) => {
+            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            
+            return (
             <div key={link.label} className="group relative">
               <a
                 href={link.href}
-                className="relative flex items-center gap-1 font-heading font-medium text-[18px] text-white group-hover:text-orange transition-colors duration-300"
+                className={`relative flex items-center gap-1 font-heading font-medium text-[18px] transition-colors duration-300 hover:text-orange ${isActive && link.href !== "#" ? "text-orange" : "text-white group-hover:text-orange"}`}
               >
                 {link.label}
                 {link.hasChevron && <ChevronDown className="h-4 w-4" />}
-                <span className="absolute -bottom-[3px] left-0 h-[2px] w-full rounded-full bg-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
+                <span className={`absolute -bottom-[3px] left-0 h-[2px] w-full rounded-full bg-orange origin-left transition-transform duration-300 ease-in-out ${isActive && link.href !== "#" ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
               </a>
 
               {/* Dropdown Menu */}
               {link.dropdownItems && (
                 <div className="absolute left-0 top-full pt-6 w-[130px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50">
                   <div className="bg-white rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.1)] flex flex-col py-3">
-                    {link.dropdownItems.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        className="px-5 py-2.5 font-[family-name:var(--font-inter)] text-[16px] font-medium text-ink hover:text-orange transition-colors"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
+                    {link.dropdownItems.map((item) => {
+                      const isSubActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+                      return (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          className={`px-5 py-2.5 font-[family-name:var(--font-inter)] text-[16px] font-medium hover:text-orange transition-colors ${isSubActive ? "text-orange" : "text-ink"}`}
+                        >
+                          {item.label}
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
         </nav>
 
         {/* Right side: Cart + Hamburger */}
-        <div className="flex h-full items-center">
-          <div className="flex items-center pr-6 lg:pr-10">
+        <div className="flex h-full items-center pr-4 sm:pr-6 lg:pr-10 xl:pr-0 gap-3 sm:gap-4 xl:gap-0">
+          <div className="flex items-center xl:pr-10">
             <button
               aria-label="Cart"
               onClick={toggleCart}
-              className="relative flex h-[50px] w-[50px] items-center justify-center rounded-full border border-white/40 text-white hover:bg-white/10 transition-colors"
+              className="relative flex h-[44px] w-[44px] sm:h-[50px] sm:w-[50px] items-center justify-center rounded-full border border-white/40 text-white hover:bg-white/10 transition-colors"
             >
-              <ShoppingCart className="h-6 w-6" />
+              <ShoppingCart className="h-5 w-5 sm:h-6 sm:w-6" />
               <span className="absolute -top-[5px] -right-[5px] flex h-[18px] w-[18px] items-center justify-center rounded-full bg-orange text-[10px] font-bold text-white">
                 {itemCount}
               </span>
@@ -90,21 +116,74 @@ export default function Header() {
 
           <button
             aria-label="Toggle menu"
-            onClick={() => setOpen(true)}
-            className="flex h-full items-center justify-center bg-orange px-6 lg:px-[40px] text-white hover:bg-orange/90 transition-colors"
+            onClick={() => setOpen(!open)}
+            className={`flex items-center justify-center transition-colors h-[44px] w-[44px] sm:h-[50px] sm:w-[50px] rounded-lg xl:h-full xl:w-auto xl:rounded-none xl:px-[40px] ${
+              open ? "bg-white text-ink xl:bg-orange xl:text-white" : "bg-orange text-white hover:bg-orange/90"
+            }`}
           >
-            <MenuIcon className="h-8 w-8 stroke-[1.5]" />
+            <MenuIcon className="h-6 w-6 sm:h-7 sm:w-7 stroke-[1.5] xl:hidden" />
+            
+            {/* Desktop icon remains MenuIcon */}
+            <MenuIcon className="h-7 w-7 sm:h-8 sm:w-8 stroke-[1.5] hidden xl:block" />
           </button>
         </div>
       </div>
 
+      {/* Mobile Navigation Dropdown (< xl) */}
+      <div className={`absolute top-full left-0 w-full bg-white shadow-xl xl:hidden z-40 transition-all duration-300 origin-top overflow-hidden ${open ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className="flex flex-col px-8 py-6 ">
+          {navLinks.map((link) => {
+            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            
+            return (
+            <div key={link.label} className="flex flex-col">
+              {link.hasChevron ? (
+                <div className="flex flex-col">
+                  <button 
+                    className="flex items-center gap-1 py-2 font-heading text-[18px] font-bold text-ink hover:text-orange text-left w-max"
+                    onClick={() => setIsPagesOpen(!isPagesOpen)}
+                  >
+                    {link.label}
+                    <ChevronDown className={`h-5 w-5 transition-transform ${isPagesOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  {isPagesOpen && (
+                    <div className="flex flex-col pl-6 gap-3 pt-2 pb-2">
+                      {link.dropdownItems?.map(item => {
+                        const isSubActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+                        return (
+                          <a key={item.label} href={item.href} className={`font-heading text-[16px] font-bold hover:text-orange ${isSubActive ? "text-orange" : "text-ink"}`}>
+                            {item.label}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              ) : link.isReservation ? (
+                <div className="pt-4 pb-2">
+                  <a href={link.href} className="inline-block font-heading text-[18px] font-bold text-ink border-b-[3px] border-orange pb-1">
+                    {link.label}
+                  </a>
+                </div>
+              ) : (
+                <a href={link.href} className={`py-2 font-heading text-[18px] font-bold ${isActive ? "text-orange" : "text-ink hover:text-orange"}`}>
+                  {link.label}
+                </a>
+              )}
+            </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Desktop Sidebar Panel (xl+) */}
       {open && (
-        <>
+        <div className="hidden xl:block">
           <div
             className="fixed inset-0 z-40 bg-black/50 transition-opacity"
             onClick={() => setOpen(false)}
           />
-          <div className="fixed top-0 right-0 z-50 h-screen w-full max-w-[500px] bg-ink px-[50px] py-[50px] flex flex-col overflow-y-auto shadow-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="fixed top-0 right-0 z-50 h-screen w-[450px] bg-ink px-[50px] py-[50px] flex flex-col overflow-y-auto shadow-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div className="flex justify-end mb-8">
               <button
                 onClick={() => setOpen(false)}
@@ -122,7 +201,7 @@ export default function Header() {
               />
             </div>
 
-            <p className="font-sans text-[18px] leading-[27px] font-normal text-white mb-10 pr-4">
+            <p className="font-sans text-[18px] leading-[1.6] font-normal text-white mb-10">
               EatFlow helps you adopt healthier eating habits by providing personalized meal plans and nutritional advice tailored to your lifestyle.
             </p>
 
@@ -137,7 +216,7 @@ export default function Header() {
               </a>
               <a href="https://www.x.com/" className="group relative flex h-[60px] w-[60px] items-center justify-center bg-white/10 text-white transition-colors">
                 <img src="/images/popup-icon-03.svg" alt="X (Twitter)" className="absolute transition-opacity duration-300 group-hover:opacity-0" />
-                <img src="/images/popup-icon-03%20hovor.svg" alt="X (Twitter) Hover" className="absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <img src="/images/popup-icon-03%20hovor.svg" alt="X (Twitter Hover)" className="absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </a>
               <a href="https://www.instagram.com/" className="group relative flex h-[60px] w-[60px] items-center justify-center bg-white/10 text-white transition-colors">
                 <img src="/images/popup-icon-04.svg" alt="Instagram" className="absolute transition-opacity duration-300 group-hover:opacity-0" />
@@ -155,7 +234,7 @@ export default function Header() {
                 </div>
                 <div>
                   <p className="text-[15px] text-white/70 mb-1">For Booking</p>
-                  <a href="tel:5646434345" className="block font-sans text-[25px] leading-[38px] font-medium text-white hover:text-[#29af66] transition-colors">
+                  <a href="tel:5646434345" className="block font-sans text-[25px] leading-tight font-medium text-white hover:text-[#29af66] transition-colors">
                     (564)-643-4345
                   </a>
                 </div>
@@ -166,7 +245,7 @@ export default function Header() {
                 </div>
                 <div>
                   <p className="text-[15px] text-white/70 mb-1">For Private Dining</p>
-                  <a href="mailto:info@eatflow.com" className="block font-sans text-[25px] leading-[38px] font-medium text-white hover:text-[#29af66] transition-colors">
+                  <a href="mailto:info@eatflow.com" className="block font-sans text-[25px] leading-tight font-medium text-white hover:text-[#29af66] transition-colors break-all">
                     info@eatflow.com
                   </a>
                 </div>
@@ -177,7 +256,7 @@ export default function Header() {
               Table Reservation
             </Link>
           </div>
-        </>
+        </div>
       )}
 
       {/* Cart Sidebar rendered inside Header */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -14,9 +14,27 @@ const dishes = [
 
 export default function Category() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const itemsToShow = 3;
+  const [itemsToShow, setItemsToShow] = useState(3);
+
+  useEffect(() => {
+    const updateItemsToShow = () => {
+      if (window.innerWidth < 640) setItemsToShow(1);
+      else if (window.innerWidth < 1024) setItemsToShow(2);
+      else setItemsToShow(3);
+    };
+    
+    updateItemsToShow();
+    window.addEventListener('resize', updateItemsToShow);
+    return () => window.removeEventListener('resize', updateItemsToShow);
+  }, []);
+
   const maxIndex = Math.max(0, dishes.length - itemsToShow);
+  
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(Math.max(0, maxIndex));
+    }
+  }, [maxIndex, currentIndex]);
   
   const nextSlide = () => setCurrentIndex(prev => (prev >= maxIndex ? 0 : prev + 1));
   const prevSlide = () => setCurrentIndex(prev => (prev <= 0 ? maxIndex : prev - 1));
@@ -53,21 +71,21 @@ export default function Category() {
 
   return (
     <section id="menu" className="mx-auto max-w-[1200px] px-6 py-20 lg:py-28">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-row items-end justify-between gap-4">
         <SectionTitle eyebrow="Every Bite: A Crispy Delight" heading="Highly Rated Eats" />
 
-        <div className="hidden sm:flex gap-4 pb-2">
+        <div className="flex gap-2 sm:gap-4 pb-2 shrink-0">
           <button 
             onClick={prevSlide}
             aria-label="Previous slide" 
-            className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-gray-200 text-orange hover:bg-orange hover:text-white transition-colors"
+            className="flex h-[40px] w-[40px] sm:h-[50px] sm:w-[50px] items-center justify-center rounded-full border border-gray-200 text-orange hover:bg-orange hover:text-white transition-colors"
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
           <button 
             onClick={nextSlide}
             aria-label="Next slide" 
-            className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-gray-200 text-orange hover:bg-orange hover:text-white transition-colors"
+            className="flex h-[40px] w-[40px] sm:h-[50px] sm:w-[50px] items-center justify-center rounded-full border border-gray-200 text-orange hover:bg-orange hover:text-white transition-colors"
           >
             <ArrowRight className="h-5 w-5" />
           </button>
@@ -91,11 +109,11 @@ export default function Category() {
               key={`${dish.name}-${index}`}
               className="group relative flex w-full shrink-0 sm:w-[calc(50%_-_1rem)] lg:w-[calc(33.3333%_-_1.3333rem)] flex-col items-center justify-between overflow-hidden bg-[#FDF6E3] px-6 py-12 text-center transition-colors duration-300 hover:bg-yellow"
             >
-            <div className="relative mb-6 flex h-[250px] w-[250px] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_15px_40px_rgba(0,0,0,0.06)]">
-              <img src={dish.image} alt={dish.name} className="h-[210px] w-[210px] rounded-full object-cover" />
+            <div className="relative mb-6 flex h-[180px] w-[180px] sm:h-[220px] sm:w-[220px] lg:h-[250px] lg:w-[250px] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_15px_40px_rgba(0,0,0,0.06)]">
+              <img src={dish.image} alt={dish.name} className="h-[150px] w-[150px] sm:h-[185px] sm:w-[185px] lg:h-[210px] lg:w-[210px] rounded-full object-cover" />
             </div>
 
-            <h4 className="font-heading font-bold text-[24px] text-ink mb-6">
+            <h4 className="font-heading font-bold text-[20px] sm:text-[22px] lg:text-[24px] text-ink mb-6">
               {dish.name}
             </h4>
 

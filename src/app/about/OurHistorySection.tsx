@@ -83,24 +83,24 @@ export default function OurHistorySection() {
           {stats.map(({ icon, value, label }) => (
             <div
               key={label}
-              className="flex items-center gap-5 px-0 sm:px-8 sm:first:pl-0"
+              className="flex items-center gap-4 lg:gap-5 px-0 sm:px-4 lg:px-8 sm:first:pl-0"
             >
-              <div className="flex h-[100px] w-[100px] shrink-0 items-center justify-center rounded-full bg-yellow">
-                <div className="relative h-[50px] w-[50px]">
+              <div className="flex h-[70px] w-[70px] sm:h-[80px] sm:w-[80px] lg:h-[100px] lg:w-[100px] shrink-0 items-center justify-center rounded-full bg-yellow">
+                <div className="relative h-[35px] w-[35px] sm:h-[40px] sm:w-[40px] lg:h-[50px] lg:w-[50px]">
                   <Image
                     src={icon}
                     alt={label}
                     fill
-                    sizes="50px"
+                    sizes="(max-width: 640px) 35px, (max-width: 1024px) 40px, 50px"
                     className="object-contain"
                   />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-ubuntu text-[45px] font-bold leading-[45px] text-yellow">
+                <span className="font-ubuntu text-[32px] sm:text-[36px] lg:text-[45px] font-bold leading-tight lg:leading-[45px] text-yellow">
                   {value}
                 </span>
-                <span className="font-inter text-[18px] font-normal leading-[27px] text-white">
+                <span className="font-inter text-[15px] sm:text-[16px] lg:text-[18px] font-normal leading-snug lg:leading-[27px] text-white">
                   {label}
                 </span>
               </div>

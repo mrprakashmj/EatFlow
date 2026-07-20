@@ -24,7 +24,7 @@ export default function OfferSection() {
           </div>
 
           {/* Badge */}
-          <div className="absolute right-6 top-[15%] lg:right-[15%] lg:top-[20%] z-20 flex h-[140px] w-[140px] lg:h-[180px] lg:w-[180px] drop-shadow-xl">
+          <div className="absolute right-6 top-[40%] sm:top-[30%] lg:right-[15%] lg:top-[20%] z-20 flex h-[140px] w-[140px] lg:h-[180px] lg:w-[180px] drop-shadow-xl">
             <img 
               src="/images/menu-rating-inner-star 1.svg" 
               alt="50% Off Badge" 

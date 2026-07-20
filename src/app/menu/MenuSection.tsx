@@ -49,7 +49,7 @@ export default function MenuSection() {
           </div>
 
           {/* Badge */}
-          <div className="absolute left-8 top-[33%] z-20 flex h-[120px] w-[120px] drop-shadow-xl lg:left-[10%]">
+          <div className="absolute left-8 top-[55%] sm:top-[50%] lg:top-[35%] z-20 flex h-[120px] w-[120px] drop-shadow-xl lg:left-[10%]">
             <img
               src="/images/menu-rating-icon yellow.svg"
               alt="Discount Badge"
@@ -65,31 +65,37 @@ export default function MenuSection() {
 
         <div className="flex flex-col justify-between lg:h-[580px]">
           <div className="flex flex-col">
-            {items.map((item, i) => (
-              <Link 
-                href={`/shop/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}
-                key={item.name} 
-                className={`group flex cursor-pointer items-center gap-5 sm:gap-6 ${i !== 0 ? 'pt-6' : ''} ${i !== items.length - 1 ? 'pb-6 border-b border-[#f0f0f0]' : ''}`}
-              >
-                <div className="flex h-[80px] w-[80px] shrink-0 items-center justify-center rounded-full bg-white drop-shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-transparent transition-colors group-hover:border-orange">
-                  <img src={item.image} alt={item.name} className="h-[70px] w-[70px] rounded-full object-cover" />
-                </div>
-                <div className="flex min-w-0 flex-1 flex-col justify-center">
-                  <div className="flex items-end gap-3">
-                    <p className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[22px] text-ink whitespace-nowrap transition-colors group-hover:text-orange">
-                      {item.name}
-                    </p>
-                    <div className="mb-[5px] min-w-[75px] flex-1 border-b border-dashed border-ink/40" />
-                    <p className="whitespace-nowrap rounded-[4px] bg-[#ebebeb] px-3 py-[6px] font-['Ubuntu',Helvetica,sans-serif] font-bold text-[16px] text-ink transition-colors group-hover:bg-green group-hover:text-white">
-                      {item.price}
+              {items.map((item, i) => (
+                <Link 
+                  href={`/shop/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}
+                  key={item.name} 
+                  className={`group flex flex-col sm:flex-row cursor-pointer items-start sm:items-center gap-4 sm:gap-6 ${i !== 0 ? 'pt-5 sm:pt-6' : ''} ${i !== items.length - 1 ? 'pb-5 sm:pb-6 border-b border-[#f0f0f0]' : ''}`}
+                >
+                  <div className="flex h-[70px] w-[70px] sm:h-[80px] sm:w-[80px] shrink-0 items-center justify-center rounded-full bg-white drop-shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-transparent transition-colors group-hover:border-orange">
+                    <img src={item.image} alt={item.name} className="h-[60px] w-[60px] sm:h-[70px] sm:w-[70px] rounded-full object-cover" />
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col justify-center w-full">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-end gap-2 sm:gap-3 w-full">
+                      <p className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[18px] sm:text-[22px] lg:text-[24px] text-ink whitespace-nowrap transition-colors group-hover:text-orange">
+                        {item.name}
+                      </p>
+                      
+                      {/* Mobile dashed line */}
+                      <div className="block sm:hidden w-full border-b border-dashed border-ink/40 my-1" />
+                      
+                      {/* Desktop dashed line */}
+                      <div className="hidden sm:block mb-[5px] min-w-[10px] sm:min-w-[75px] flex-1 border-b border-dashed border-ink/40" />
+                      
+                      <p className="whitespace-nowrap rounded-[4px] bg-[#ebebeb] px-3 py-[6px] font-['Ubuntu',Helvetica,sans-serif] font-bold text-[15px] sm:text-[17px] text-ink transition-colors group-hover:bg-green group-hover:text-white">
+                        {item.price}
+                      </p>
+                    </div>
+                    <p className="mt-3 sm:mt-2 text-[15px] sm:text-[18px] text-[#666] leading-snug truncate w-full">
+                      {item.desc}
                     </p>
                   </div>
-                  <p className="mt-1 truncate text-[18px] text-[#666]">
-                    {item.desc}
-                  </p>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
           </div>
 
           <div className="mt-8 flex justify-start">
@@ -103,30 +109,36 @@ export default function MenuSection() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-0">
 
           {/* Left Side: List */}
-          <div className="flex flex-col justify-between lg:h-[580px] mt-[100px] order-2 lg:order-1 pt-12 lg:pt-0">
+          <div className="flex flex-col justify-between mt-8 lg:mt-0 lg:h-[580px] order-2 lg:order-1">
             <div className="flex flex-col">
               {mainCourseItems.map((item, i) => (
                 <Link 
                   href={`/shop/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}
                   key={item.name} 
-                  className={`group flex cursor-pointer items-center gap-5 sm:gap-6 ${i !== 0 ? 'pt-6' : ''} ${i !== mainCourseItems.length - 1 ? 'pb-6 border-b border-[#f0f0f0]' : ''}`}
+                  className={`group flex flex-col-reverse sm:flex-row cursor-pointer items-start sm:items-center gap-4 sm:gap-6 ${i !== 0 ? 'pt-5 sm:pt-6' : ''} ${i !== mainCourseItems.length - 1 ? 'pb-5 sm:pb-6 border-b border-[#f0f0f0]' : ''}`}
                 >
-                  <div className="flex min-w-0 flex-1 flex-col justify-center">
-                    <div className="flex items-end gap-3">
-                      <p className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[22px] text-ink whitespace-nowrap transition-colors group-hover:text-orange">
+                  <div className="flex min-w-0 flex-1 flex-col justify-center w-full">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-end gap-2 sm:gap-3 w-full">
+                      <p className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[18px] sm:text-[22px] lg:text-[24px] text-ink whitespace-nowrap transition-colors group-hover:text-orange">
                         {item.name}
                       </p>
-                      <div className="mb-[5px] min-w-[75px] flex-1 border-b border-dashed border-ink/40" />
-                      <p className="whitespace-nowrap rounded-[4px] bg-[#ebebeb] px-3 py-[6px] font-['Ubuntu',Helvetica,sans-serif] font-bold text-[16px] text-ink transition-colors group-hover:bg-green group-hover:text-white">
+                      
+                      {/* Mobile dashed line */}
+                      <div className="block sm:hidden w-full border-b border-dashed border-ink/40 my-1" />
+                      
+                      {/* Desktop dashed line */}
+                      <div className="hidden sm:block mb-[5px] min-w-[10px] sm:min-w-[75px] flex-1 border-b border-dashed border-ink/40" />
+                      
+                      <p className="whitespace-nowrap rounded-[4px] bg-[#ebebeb] px-3 py-[6px] font-['Ubuntu',Helvetica,sans-serif] font-bold text-[15px] sm:text-[17px] text-ink transition-colors group-hover:bg-green group-hover:text-white">
                         {item.price}
                       </p>
                     </div>
-                    <p className="mt-1 truncate text-[18px] text-[#666]">
+                    <p className="mt-3 sm:mt-2 text-[15px] sm:text-[18px] text-[#666] leading-snug truncate w-full">
                       {item.desc}
                     </p>
                   </div>
-                  <div className="flex h-[80px] w-[80px] shrink-0 items-center justify-center rounded-full bg-white drop-shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-transparent transition-colors group-hover:border-orange">
-                    <img src={item.image} alt={item.name} className="h-[70px] w-[70px] rounded-full object-cover" />
+                  <div className="flex h-[70px] w-[70px] sm:h-[80px] sm:w-[80px] shrink-0 items-center justify-center rounded-full bg-white drop-shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-transparent transition-colors group-hover:border-orange">
+                    <img src={item.image} alt={item.name} className="h-[60px] w-[60px] sm:h-[70px] sm:w-[70px] rounded-full object-cover" />
                   </div>
                 </Link>
               ))}
@@ -158,7 +170,7 @@ export default function MenuSection() {
               </div>
 
               {/* Badge */}
-              <div className="absolute right-8 top-[35%] z-20 flex h-[120px] w-[120px] drop-shadow-xl lg:right-8">
+              <div className="absolute right-8 top-[55%] sm:top-[50%] lg:top-[35%] z-20 flex h-[120px] w-[120px] drop-shadow-xl lg:right-8">
                 <img
                   src="/images/menu-rating-icon-red.svg"
                   alt="Discount Badge"

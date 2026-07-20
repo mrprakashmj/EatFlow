@@ -38,20 +38,20 @@ export default function Footer() {
   return (
     <footer className="relative bg-ink pt-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/footer-overlay-image.svg')" }}>
       {/* Newsletter CTA card */}
-      <div className="mx-auto max-w-[1200px]  relative z-10">
+      <div className="mx-auto max-w-[1200px] relative z-10 px-6 -mb-[180px] sm:-mb-[130px] lg:-mb-[100px]">
         <div 
-          className="relative -translate-y-1/2 flex flex-col items-center gap-8 overflow-hidden py-[80px] pr-[60px] pl-[50px] text-center sm:flex-row sm:justify-between sm:text-left bg-[#37A059] bg-cover bg-center"
+          className="relative -translate-y-1/2 flex flex-col items-center gap-6 sm:gap-8 overflow-hidden py-10 sm:py-[60px] lg:py-[80px] px-6 sm:px-10 lg:pr-[60px] lg:pl-[50px] text-center lg:flex-row lg:justify-between lg:text-left bg-[#37A059] bg-cover bg-center"
           style={{ backgroundImage: "url('/images/cta-bg-line.svg')" }}
         >
-          <div className="flex flex-col sm:flex-row items-center gap-6 text-left">
-            <div className="flex h-[100px] w-[100px] shrink-0 items-center justify-center rounded-full bg-yellow">
-              <img src="/images/CTA mail-icon.svg" alt="Mail" className="h-[40px] w-[51px]" />
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+            <div className="flex h-[80px] w-[80px] sm:h-[100px] sm:w-[100px] shrink-0 items-center justify-center rounded-full bg-yellow">
+              <img src="/images/CTA mail-icon.svg" alt="Mail" className="h-[32px] w-[42px] sm:h-[40px] sm:w-[51px]" />
             </div>
-            <div className="text-center sm:text-left">
-              <h3 className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[40px] leading-[44px] text-[#030406]">
-                Subscribe to our<br />newsletter
+            <div>
+              <h3 className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.2] sm:leading-[44px] text-[#030406]">
+                Subscribe to our<br className="hidden sm:block" /> newsletter
               </h3>
-              <p className="mt-2 font-[family-name:var(--font-inter)] text-[22px] leading-[33px] text-[#030406]">
+              <p className="mt-2 font-[family-name:var(--font-inter)] text-[16px] sm:text-[20px] lg:text-[22px] leading-[1.5] text-[#030406]">
                 Join the 100K+ people that uses Flavory
               </p>
             </div>
@@ -73,7 +73,7 @@ export default function Footer() {
                 type="email"
                 required
                 placeholder="Enter your Email"
-                className="h-[60px] w-full flex-1 bg-white px-6 text-[18px] text-[#030406] outline-none placeholder:text-[#030406]/70"
+                className="h-[60px] w-full sm:flex-1 bg-white px-6 text-[18px] text-[#030406] outline-none placeholder:text-[#030406]/70"
               />
               <Button type="submit" variant="ink" className="h-[60px] !min-w-[160px] text-[18px] hover:!bg-[#ffce53] hover:!text-link">
                 Subscribe
@@ -166,7 +166,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-['Ubuntu',Helvetica,sans-serif] font-normal text-[22px] leading-[33px] text-white">
+          <p className="font-['Ubuntu',Helvetica,sans-serif] font-normal text-[16px] sm:text-[18px] lg:text-[22px] leading-[1.5] text-white text-center sm:text-left">
             Copyright © <Link href="/" className="hover:text-orange transition-colors">EatFlow</Link>. | Designed By <a href="https://victorflow.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors">VictorFlow</a> - Powered By <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors">Next.js</a>
           </p>
           <button 

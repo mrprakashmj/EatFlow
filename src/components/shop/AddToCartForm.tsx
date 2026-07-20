@@ -32,7 +32,7 @@ export default function AddToCartForm({ item }: { item: FoodItem }) {
   };
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
       <div className="flex items-center gap-4">
         <span className="font-inter text-[18px] font-bold text-white">Quantity:</span>
         <input
@@ -40,12 +40,12 @@ export default function AddToCartForm({ item }: { item: FoodItem }) {
           min="1"
           value={localQuantity}
           onChange={(e) => setLocalQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-          className="h-[50px] w-[80px] border border-white/20 bg-transparent text-center font-inter text-[16px] text-white focus:border-orange focus:outline-none"
+          className="h-[50px] w-[80px] border border-white/20 bg-transparent text-center font-inter text-[16px] text-white focus:border-orange focus:outline-none shrink-0"
         />
       </div>
       <button
         onClick={handleAddToCart}
-        className="flex h-[50px] w-[160px] items-center justify-center bg-orange px-8 font-inter text-[16px] font-bold text-white hover:bg-orange/90 transition-colors cursor-pointer"
+        className="flex h-[50px] w-full sm:w-[160px] items-center justify-center bg-orange px-8 font-inter text-[16px] font-bold text-white hover:bg-orange/90 transition-colors cursor-pointer whitespace-nowrap shrink-0"
       >
         {isAdded ? "Added!" : "Add to Cart"}
       </button>

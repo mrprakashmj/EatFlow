@@ -59,7 +59,7 @@ export default function GallerySection() {
         className="mx-auto"
       />
 
-      <div className="flex flex-col gap-6 mb-[150px]">
+      <div className="flex flex-col gap-6 mb-[280px] sm:mb-[200px] lg:mb-[150px]">
         {/* Top Row — 55 / 45 split, same height */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-[55fr_45fr]">
           <div 

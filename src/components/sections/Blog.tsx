@@ -50,7 +50,7 @@ const recent = [
 
 export default function Blog() {
   return (
-    <section id="blog" className="mx-auto max-w-[1200px] px-6 pt-20 pb-[230px] lg:pt-28 lg:pb-[230px]">
+    <section id="blog" className="mx-auto max-w-[1200px] px-6 pt-10 pb-[250px] sm:pb-[160px] lg:pt-10 lg:pb-[130px]">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionTitle eyebrow="Our Blogs" heading="Explore Our Latest Blogs" />
         <Button href="/blog" variant="orange" className="h-[60px] min-w-[170px] shrink-0 font-['Ubuntu',Helvetica,sans-serif] font-medium text-[18px] text-white hover:!bg-green hover:!text-white">
@@ -58,7 +58,7 @@ export default function Blog() {
         </Button>
       </div>
 
-      <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1fr_380px]">
+      <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1fr_340px] xl:grid-cols-[1fr_1fr_380px]">
         {posts.map((post, i) => (
           <div key={i} className="flex flex-col bg-[#f4f4f4] p-5 sm:p-6 h-fit">
             <Link href={`/blog/${post.id}`} className="block h-[280px] w-full overflow-hidden">
@@ -96,7 +96,7 @@ export default function Blog() {
                 <Link href={`/blog/${post.id}`} className="block h-[75px] w-[75px] shrink-0 overflow-hidden rounded-full">
                   <img src={post.image} alt={post.title} className="h-full w-full object-cover transition-transform duration-300 hover:scale-110 cursor-pointer" />
                 </Link>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <Link href={`/blog/${post.id}`} className="block">
                     <p className="font-['Ubuntu',Helvetica,sans-serif] text-[18px] font-medium text-white transition-colors hover:text-yellow cursor-pointer leading-snug">
                       {post.title}

@@ -51,10 +51,10 @@ export default function BlogSingleHero({
       <div className="bg-white">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-8 lg:px-4">
           {/* Author + meta bar */}
-          <div className="mt-6 sm:mt-8 flex items-center justify-between pb-8 sm:pb-10">
+          <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-y-4 pb-8 sm:pb-10">
             {/* Author */}
             <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-              <div className="relative size-[44px] sm:size-[50px] overflow-hidden rounded-full shrink-0">
+              <div className="relative size-[50px] sm:size-[60px] overflow-hidden rounded-full shrink-0">
                 <Image
                   src="/images/author-image-01.jpg"
                   alt={authorName}
@@ -63,28 +63,28 @@ export default function BlogSingleHero({
                 />
               </div>
               <div>
-                <p className="font-ubuntu text-[15px] sm:text-[18px] font-bold leading-none text-[#030406]">
+                <p className="font-ubuntu text-[18px] sm:text-[20px] font-bold leading-none text-[#030406]">
                   {authorName}
                 </p>
-                <p className="mt-[6px] font-inter text-[12px] sm:text-[14px] leading-none text-[#4c4a49]">
+                <p className="mt-[6px] font-inter text-[14px] sm:text-[16px] leading-none text-[#4c4a49]">
                   {authorRole}
                 </p>
               </div>
             </div>
 
             {/* Divider line */}
-            <div className="flex-1 border-t border-[#d1d1d1] mx-4 sm:mx-6" />
+            <div className="hidden sm:block flex-1 border-t border-[#d1d1d1] mx-4 sm:mx-6" />
 
             {/* Read time + category */}
             <div className="flex items-center gap-3 sm:gap-5 shrink-0">
-              <span className="font-inter text-[12px] sm:text-[14px] text-[#4c4a49]">
+              <span className="font-inter text-[14px] sm:text-[16px] text-[#4c4a49] whitespace-nowrap">
                 {readTime}
               </span>
-              <span className="flex items-center gap-2 font-inter text-[14px] sm:text-[16px] text-[#fb5629]">
+              <span className="flex items-center gap-2 font-inter text-[16px] sm:text-[18px] text-[#fb5629] whitespace-nowrap">
                 <img
                   src="/images/pen-tool-icon.svg"
                   alt="category"
-                  className="size-[14px] sm:size-[16px]"
+                  className="size-[16px] sm:size-[18px]"
                 />
                 {category}
               </span>

@@ -7,7 +7,7 @@ import Testimonial from "@/components/sections/Testimonial";
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <Banner />
       <AboutSection />
       <OurHistorySection />

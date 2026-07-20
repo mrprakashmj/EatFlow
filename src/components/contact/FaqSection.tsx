@@ -37,8 +37,8 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-white mb-[150px]">
-      <div className="container mx-auto max-w-[1200px] px-6 md:px-10 py-20 md:py-28">
+    <section className="bg-white pb-[200px] sm:pb-[160px] lg:pb-[130px]">
+      <div className="container mx-auto max-w-[1200px] px-6 md:px-10 pt-10 md:pt-16 pb-20 md:pb-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
 
           {/* Left: title + CTA */}
@@ -48,14 +48,14 @@ export default function FaqSection() {
               We follow strict quality control measures and source our ingredients from trusted suppliers. Our team regularly inspects the food to ensure
             </p>
 
-            <div className="mt-10 bg-[#f5c64b] p-6 sm:p-8 flex items-center justify-between gap-6">
-              <div className="flex items-center gap-6">
+            <div className="mt-10 bg-[#f5c64b] p-6 sm:p-8 flex flex-wrap items-center justify-between gap-6">
+              <div className="flex flex-wrap items-center gap-6">
                 <div className="shrink-0 flex items-center justify-center bg-[#c29623] w-[70px] h-[70px]">
                   <span className="flex items-center justify-center rounded-full bg-white text-[#c29623] font-bold text-2xl w-10 h-10">
                     ?
                   </span>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-[200px]">
                   <p className="font-ubuntu font-bold text-ink text-xl">More queries? Ask!</p>
                   <p className="font-inter text-ink/80 text-sm mt-1">Serving delicious dishes in a table<br />with cozy atmosphere.</p>
                 </div>
@@ -79,7 +79,7 @@ export default function FaqSection() {
                     className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-ubuntu font-medium text-[#0d0c1e] text-[22px] leading-[29px]">{faq.question}</span>
+                    <span className="font-ubuntu font-medium text-[#0d0c1e] text-[18px] sm:text-[20px] lg:text-[22px] leading-[29px]">{faq.question}</span>
                     <span className={`relative shrink-0 flex items-center justify-center rounded-full w-6 h-6 text-white transition-all duration-500 ease-in-out ${isOpen ? 'bg-orange rotate-180' : 'bg-ink rotate-0'}`}>
                       <Plus className={`absolute w-4 h-4 transition-all duration-500 ease-in-out ${isOpen ? 'opacity-0 scale-50 rotate-90' : 'opacity-100 scale-100 rotate-0'}`} />
                       <Minus className={`absolute w-4 h-4 transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 -rotate-90'}`} />

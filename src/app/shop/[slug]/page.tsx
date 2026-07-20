@@ -71,12 +71,12 @@ export default async function SingleItemPage({ params }: { params: Promise<{ slu
             </p>
 
             {/* Price */}
-            <div className="flex items-end gap-4 mb-8">
-              <span className="font-inter text-[32px] sm:text-[40px] font-bold text-orange leading-none">
+            <div className="flex flex-wrap items-end gap-3 sm:gap-4 mb-8">
+              <span className="font-inter text-[32px] sm:text-[40px] font-bold text-orange leading-[1.1]">
                 {item.price}
               </span>
               {item.originalPrice && (
-                <span className="font-inter text-[18px] text-[#A98E71] line-through mb-1">
+                <span className="font-inter text-[16px] sm:text-[18px] text-[#A98E71] line-through mb-1 sm:mb-2">
                   {item.originalPrice}
                 </span>
               )}

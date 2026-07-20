@@ -35,7 +35,7 @@ export default function MenuSidebar({
       {/* Menu categories */}
       <div className="border-b border-hairline/60 pb-10">
         <h3 className="font-ubuntu text-[22px] font-bold leading-[33px] text-ink">Menu Category</h3>
-        <ul className="mt-8 flex flex-col gap-5">
+        <ul className="mt-6 flex flex-wrap gap-4 sm:gap-6 lg:mt-8 lg:flex-col lg:gap-5">
           {categories.map((category) => {
             const isActive = activeCategory === category.label;
             return (

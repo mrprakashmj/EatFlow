@@ -20,12 +20,12 @@ export default function CartSidebar() {
 
       {/* Sidebar panel */}
       <div
-        className={`fixed top-0 right-0 z-50 h-screen w-full max-w-[450px] bg-white shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${
+        className={`fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[450px] bg-white shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${
           isCartOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-hairline/20 px-8 py-6">
+        <div className="flex items-center justify-between border-b border-hairline/20 px-5 sm:px-8 py-5 sm:py-6">
           <h2 className="font-ubuntu text-[24px] font-bold text-ink">Your Cart</h2>
           <button
             onClick={toggleCart}
@@ -36,7 +36,7 @@ export default function CartSidebar() {
         </div>
 
         {/* Cart Items */}
-        <div className="flex-1 overflow-y-auto p-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex-1 overflow-y-auto p-5 sm:p-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {cartItems.length === 0 ? (
             <p className="text-ink/60 text-center mt-10">Your cart is empty.</p>
           ) : (
@@ -91,7 +91,7 @@ export default function CartSidebar() {
 
         {/* Footer */}
         {cartItems.length > 0 && (
-          <div className="border-t border-hairline/20 p-8 bg-gray-50/50">
+          <div className="border-t border-hairline/20 p-5 sm:p-8 bg-gray-50/50">
             <div className="flex items-center justify-between mb-6">
               <span className="font-inter text-[16px] text-ink/70">Subtotal</span>
               <span className="font-inter text-[20px] font-bold text-ink">

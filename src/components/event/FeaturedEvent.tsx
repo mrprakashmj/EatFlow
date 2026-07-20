@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function FeaturedEvent() {
   return (
     <section className="bg-white py-20 md:py-28 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 md:px-[10px] lg:px-[10px] ">
+      <div className="mx-auto max-w-7xl px-6 md:px-[20px] lg:px-[20px] ">
         <div className="bg-[#f2f2f2] p-[25px] md:p-[25px] lg:p-[30px] grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image */}
           <div className="order-2 md:order-1 relative w-full aspect-[4/3] overflow-hidden">

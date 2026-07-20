@@ -23,7 +23,7 @@ export default function Button({
   href,
   ...props
 }: ButtonProps) {
-  const commonClasses = `inline-flex h-[60px] min-w-[200px] items-center justify-center px-[14px] font-heading font-medium text-[20px] transition-colors cursor-pointer whitespace-nowrap ${variants[variant]} ${className}`;
+  const commonClasses = `inline-flex h-[45px] sm:h-[55px] lg:h-[60px] min-w-[140px] sm:min-w-[180px] lg:min-w-[200px] items-center justify-center px-4 sm:px-[14px] font-heading font-medium text-[16px] sm:text-[18px] lg:text-[20px] transition-colors cursor-pointer whitespace-nowrap ${variants[variant]} ${className}`;
 
   if (href) {
     return (

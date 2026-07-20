@@ -42,14 +42,17 @@ export default function EventDetailSidebar({
           Event Details
         </h3>
         <ul className="mt-6 flex flex-col gap-4">
-          <li className="flex gap-2 font-inter text-[20px] leading-[30px] text-ink">
-            <span className="text-orange">Place :</span> {place}
+          <li className="flex items-start gap-2 font-inter text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.5] text-ink">
+            <span className="text-orange whitespace-nowrap shrink-0">Place :</span>
+            <span>{place}</span>
           </li>
-          <li className="flex gap-2 font-inter text-[20px] leading-[30px] text-ink">
-            <span className="text-orange">Date :</span> {date}
+          <li className="flex items-start gap-2 font-inter text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.5] text-ink">
+            <span className="text-orange whitespace-nowrap shrink-0">Date :</span>
+            <span>{date}</span>
           </li>
-          <li className="flex gap-2 font-inter text-[20px] leading-[30px] text-ink">
-            <span className="text-orange">Time :</span> {time}
+          <li className="flex items-start gap-2 font-inter text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.5] text-ink">
+            <span className="text-orange whitespace-nowrap shrink-0">Time :</span>
+            <span>{time}</span>
           </li>
         </ul>
       </div>

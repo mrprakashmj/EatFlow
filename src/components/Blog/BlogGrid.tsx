@@ -18,8 +18,8 @@ export default function BlogGrid() {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-[1200px] px-6 sm:px-10 lg:px-0">
-        <div className="py-16 sm:py-20 lg:pb-[100px]">
+      <div className="mx-auto max-w-[1200px] ">
+        <div className="pt-16 pb-[160px] sm:pt-20 sm:pb-[150px] px-[20px] lg:pb-[230px]">
           {/* Section heading + filters */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             <div>
