@@ -1,39 +1,54 @@
-import { UtensilsCrossed, CalendarDays } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export type BlogPost = {
   id: string;
   title: string;
   excerpt: string;
-  tag: "Food" | "Restaurants";
+  tag: string;
   date: string;
+  image?: string;
 };
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <article className="bg-[#efefef] rounded-2xl overflow-hidden flex flex-col h-full">
-      <div className="relative w-full aspect-[16/13] bg-gradient-to-br from-[#fb5629]/25 via-[#efefef] to-[#29af66]/20" />
-
-      <div className="flex flex-col flex-1 p-6 sm:p-8">
-        <div className="flex items-center gap-5">
-          <span className="inline-flex items-center gap-[10px] text-[#fb5629] font-inter text-base">
-            <UtensilsCrossed className="size-[18px]" strokeWidth={2} />
-            {post.tag}
-          </span>
-          <span className="h-[22px] w-px bg-[#4c4a49]/30 rotate-12" />
-          <span className="inline-flex items-center gap-[10px] text-[#4c4a49] font-inter text-base">
-            <CalendarDays className="size-[18px]" strokeWidth={2} />
-            {post.date}
-          </span>
+    <Link href={`/blog/${post.id}`} className="block h-full group">
+      <article className="flex flex-col bg-[#f4f4f4] p-5 sm:p-6 h-full ">
+        <div className="relative h-[280px] w-full overflow-hidden">
+          {post.image ? (
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+            className="object-cover transition-transform duration-300 hover:scale-110 cursor-pointer"
+            />
+          ) : (
+          <div className="w-full h-full bg-gradient-to-br from-[#fb5629]/25 via-[#efefef] to-[#29af66]/20 transition-transform duration-300 hover:scale-110 cursor-pointer" />
+          )}
         </div>
 
-        <h3 className="mt-5 font-ubuntu font-bold leading-[1.2] text-[#23222a] text-xl sm:text-2xl">
-          {post.title}
-        </h3>
+        <div className="flex flex-col flex-1 mt-6">
+          <div className="flex items-center gap-4 text-[18px]">
+            <span className="flex items-center gap-2 text-[#fb5629] font-inter">
+              <img src="/images/pen-tool-icon.svg" alt="Category" className="h-4 w-4" />
+              {post.tag}
+            </span>
+            <span className="text-[#d1d1d1]">|</span>
+            <span className="flex items-center gap-2 text-[#030406] font-inter">
+              <img src="/images/calender-icon.svg" alt="Date" className="h-4 w-4" />
+              {post.date}
+            </span>
+          </div>
 
-        <p className="mt-4 font-inter font-normal leading-[1.5] text-[#4c4a49] text-base sm:text-lg">
-          {post.excerpt}
-        </p>
-      </div>
-    </article>
+        <h3 className="mt-4 font-ubuntu font-bold leading-[1.3] text-[#030406] text-[25px] transition-colors hover:text-[#fb5629] cursor-pointer">
+            {post.title}
+          </h3>
+
+          <p className="mt-3 font-inter font-normal leading-[1.6] text-[#4c4a49] text-[18px]">
+            {post.excerpt}
+          </p>
+        </div>
+      </article>
+    </Link>
   );
 }

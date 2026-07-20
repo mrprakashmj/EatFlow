@@ -1,0 +1,52 @@
+import { type BlogPost } from "@/components/Blog/BlogCard";
+
+export const POSTS: BlogPost[] = [
+  {
+    id: "1",
+    title: "Savoring Summer: Delicious Dishes Await!",
+    excerpt: "Savor the essence of summer with delicious seasonal dishes.",
+    tag: "Dessert",
+    date: "16 Sep 2024",
+    image: "/images/recent post image three.jpg",
+  },
+  {
+    id: "2",
+    title: "Chef's Secrets: Unveiling Culinary Marvels",
+    excerpt: "Unlock culinary expertise with insider tips from our chefs.",
+    tag: "Steps",
+    date: "12 Sep 2024",
+    image: "/images/recent post image four.jpg",
+  },
+  {
+    id: "3",
+    title: "Foodie Finds: Discover Hidden Culinary Gems",
+    excerpt: "Discover culinary treasures and must-try dining destinations.",
+    tag: "Food",
+    date: "12 Sep 2024",
+    image: "/images/recent post image three.jpg",
+  },
+  {
+    id: "4",
+    title: "Tasting Notes: Adventures in Flavor Exploration",
+    excerpt: "Embark on flavorful journeys through unique tastes and textures.",
+    tag: "Food",
+    date: "12 Sep 2024",
+    image: "/images/recent post image four.jpg",
+  },
+  {
+    id: "5",
+    title: "Cooking Chronicles: Tales from the Kitchen",
+    excerpt: "Dive into behind-the-scenes stories of kitchen creations.",
+    tag: "Steps",
+    date: "12 Sep 2024",
+    image: "/images/recent post image three.jpg",
+  },
+  {
+    id: "6",
+    title: "Farm to Table: Fresh, Local hygienic Ingredients",
+    excerpt: "Experience farm-fresh dining with locally sourced ingredients.",
+    tag: "Dessert",
+    date: "12 Sep 2024",
+    image: "/images/recent post image four.jpg",
+  },
+];
