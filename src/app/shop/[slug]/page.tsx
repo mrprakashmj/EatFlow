@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { menuItems } from "@/data/menu";
-import AddToCartForm from "@/components/order-online/AddToCartForm";
+import AddToCartForm from "@/components/shop/AddToCartForm";
 import Testimonial from "@/components/sections/Testimonial";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export default async function SingleItemPage({ params }: { params: Promise<{ slu
   return (
     <main className="bg-ink min-h-screen mb-[150px]">
       <div className="container mx-auto max-w-[1200px] px-6 pt-[50px] pb-[100px]">
-        
+
         {/* Breadcrumb / Back Link */}
         <div className="mb-12">
           <Link href="/shop" className="text-white/60 hover:text-orange transition-colors font-inter text-[14px]">
@@ -25,7 +25,7 @@ export default async function SingleItemPage({ params }: { params: Promise<{ slu
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
+
           {/* Left Column: Image */}
           <div className="relative w-full max-w-[500px] aspect-square mx-auto lg:mx-0">
             <Image
@@ -40,14 +40,14 @@ export default async function SingleItemPage({ params }: { params: Promise<{ slu
 
           {/* Right Column: Details */}
           <div className="flex flex-col">
-            
+
             {/* Veg/Non-veg Indicator */}
             <div className="flex items-center gap-2 mb-4">
-              <Image 
-                src={item.isVeg ? "/images/shop-icon veg.svg" : "/images/shop-icon-non veg.svg"} 
-                alt={item.isVeg ? "Veg" : "Non-veg"} 
-                width={16} 
-                height={16} 
+              <Image
+                src={item.isVeg ? "/images/shop-icon veg.svg" : "/images/shop-icon-non veg.svg"}
+                alt={item.isVeg ? "Veg" : "Non-veg"}
+                width={16}
+                height={16}
               />
               <span className="font-inter text-[14px] text-white">
                 {item.isVeg ? "Veg" : "Non-veg"}
@@ -66,7 +66,7 @@ export default async function SingleItemPage({ params }: { params: Promise<{ slu
               {/* Using a placeholder text if the user wants exactly what's in the screenshot, or use item.description */}
               {/* Screenshot says: "From climate emergency to food security, the way we farm is key to form which don't look even slightly believable." */}
               From climate emergency to food security, the way we farm is key to form which don't look even slightly believable.
-              <br/><br/>
+              <br /><br />
               {item.description}
             </p>
 
@@ -96,19 +96,19 @@ export default async function SingleItemPage({ params }: { params: Promise<{ slu
               <span className="font-inter text-[16px] font-bold text-white">Share this:</span>
               <div className="flex gap-4">
                 {/* Re-using the popup icons from the navbar for social sharing */}
-                <a href="#" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
                   <img src="/images/popup-icon-01.svg" alt="Facebook" className="absolute transition-opacity duration-300 group-hover:opacity-0 w-full h-full object-contain opacity-80" />
                   <img src="/images/popup-icon-01%20hovor.svg" alt="Facebook Hover" className="absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100 w-full h-full object-contain" />
                 </a>
-                <a href="#" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
+                <a href="https://www.x.com" target="_blank" rel="noopener noreferrer" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
                   <img src="/images/popup-icon-03.svg" alt="X" className="absolute transition-opacity duration-300 group-hover:opacity-0 w-full h-full object-contain opacity-80" />
                   <img src="/images/popup-icon-03%20hovor.svg" alt="X Hover" className="absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100 w-full h-full object-contain" />
                 </a>
-                <a href="#" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
                   <img src="/images/popup-icon-04.svg" alt="LinkedIn" className="absolute transition-opacity duration-300 group-hover:opacity-0 w-full h-full object-contain opacity-80" />
                   <img src="/images/popup-icon-04%20hovor.svg" alt="LinkedIn Hover" className="absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100 w-full h-full object-contain" />
                 </a>
-                <a href="#" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="group relative flex h-6 w-6 items-center justify-center text-white transition-colors">
                   <img src="/images/popup-icon-02.svg" alt="Instagram" className="absolute transition-opacity duration-300 group-hover:opacity-0 w-full h-full object-contain opacity-80" />
                   <img src="/images/popup-icon-02%20hovor.svg" alt="Instagram Hover" className="absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100 w-full h-full object-contain" />
                 </a>
@@ -118,9 +118,9 @@ export default async function SingleItemPage({ params }: { params: Promise<{ slu
         </div>
       </div>
       <div className="w-full bg-white ">
-          <Testimonial  />
+        <Testimonial />
       </div>
-    
+
     </main>
   );
 }

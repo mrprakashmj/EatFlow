@@ -10,10 +10,11 @@ type Filter = (typeof FILTERS)[number];
 export default function BlogGrid() {
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
 
-  const filteredPosts =
+  const filteredPosts = (
     activeFilter === "All" || activeFilter === "Steps"
       ? POSTS
-      : POSTS.filter((post) => post.tag === activeFilter);
+      : POSTS.filter((post) => post.tag === activeFilter)
+  ).filter(post => post.id !== "7");
 
   return (
     <section className="bg-white">

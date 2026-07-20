@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { ArrowUp } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 const pages = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about/" },
-  { label: "Blog", href: "#" },
-  { label: "Events", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Blog", href: "/blog" },
+  { label: "Events", href: "/event/" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const utilityLinks = [
@@ -21,13 +22,19 @@ const utilityLinks = [
 ];
 
 const socialIcons = [
-  { default: "/images/footer - social-icon -01.svg", hover: "/images/footer - social-icon -01 hovor.svg" },
-  { default: "/images/footer - social-icon -02.svg", hover: "/images/footer - social-icon -02 hovor.svg" },
-  { default: "/images/footer - social-icon -03.svg", hover: "/images/footer - social-icon -03 hovor.svg" },
-  { default: "/images/footer - social-icon -04.svg", hover: "/images/footer - social-icon -04 hovor.svg" },
+  { default: "/images/footer - social-icon -01.svg", hover: "/images/footer - social-icon -01 hovor.svg", href: "https://www.facebook.com" },
+  { default: "/images/footer - social-icon -02.svg", hover: "/images/footer - social-icon -02 hovor.svg", href: "https://www.pinterest.com" },
+  { default: "/images/footer - social-icon -03.svg", hover: "/images/footer - social-icon -03 hovor.svg", href: "https://www.x.com" },
+  { default: "/images/footer - social-icon -04.svg", hover: "/images/footer - social-icon -04 hovor.svg", href: "https://www.instagram.com" },
 ];
 
 export default function Footer() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
   return (
     <footer className="relative bg-ink pt-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/footer-overlay-image.svg')" }}>
       {/* Newsletter CTA card */}
@@ -49,16 +56,30 @@ export default function Footer() {
               </p>
             </div>
           </div>
-          <div className="flex w-full max-w-[471px] flex-col sm:flex-row items-center gap-5">
-            <input
-              type="email"
-              placeholder="Enter your Email"
-              className="h-[60px] w-full flex-1 bg-white px-6 text-[18px] text-[#030406] outline-none placeholder:text-[#030406]/70"
-            />
-            <Button variant="ink" className="h-[60px] !min-w-[160px] text-[18px] hover:!bg-[#ffce53] hover:!text-link">
-              Subscribe
-            </Button>
-          </div>
+          {isSubmitted ? (
+            <div className="flex w-full max-w-[471px] flex-col items-center justify-center gap-4 rounded-[10px] bg-white p-6 text-center shadow-lg sm:flex-row sm:text-left h-[60px] sm:h-[80px]">
+              <div className="flex size-8 sm:size-10 items-center justify-center rounded-full bg-green text-white shrink-0 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <p className="font-ubuntu font-bold text-[18px] sm:text-[22px] text-[#030406]">
+                Subscribed Successfully!
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex w-full max-w-[471px] flex-col sm:flex-row items-center gap-5">
+              <input
+                type="email"
+                required
+                placeholder="Enter your Email"
+                className="h-[60px] w-full flex-1 bg-white px-6 text-[18px] text-[#030406] outline-none placeholder:text-[#030406]/70"
+              />
+              <Button type="submit" variant="ink" className="h-[60px] !min-w-[160px] text-[18px] hover:!bg-[#ffce53] hover:!text-link">
+                Subscribe
+              </Button>
+            </form>
+          )}
         </div>
       </div>
 
@@ -73,7 +94,9 @@ export default function Footer() {
               {socialIcons.map((icon, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={icon.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex items-center justify-center"
                 >
                   <img src={icon.default} alt={`Social Icon ${i + 1}`} className="h-[26px] w-auto group-hover:hidden" />
@@ -88,11 +111,11 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <div className="flex items-start gap-4 text-white font-[family-name:var(--font-inter)] font-medium text-[20px] leading-[30px]">
               <img src="/images/mail-icon.svg" alt="Email" className="h-6 w-6 shrink-0 mt-1" /> 
-              info@eatflow.com
+              <a href="mailto:info@eatflow.com" className="hover:text-orange transition-colors">info@eatflow.com</a>
             </div>
             <div className="flex items-start gap-4 text-white font-[family-name:var(--font-inter)] font-medium text-[20px] leading-[30px]">
               <img src="/images/phone-icon.svg" alt="Phone" className="h-6 w-6 shrink-0 mt-1" /> 
-              (564)-643-4345
+              <a href="tel:5646434345" className="hover:text-orange transition-colors">(564)-643-4345</a>
             </div>
             <div className="flex items-start gap-4 text-white font-[family-name:var(--font-inter)] font-medium text-[20px] leading-[30px]">
               <img src="/images/map-icon.svg" alt="Location" className="h-6 w-6 shrink-0 mt-1" /> 
@@ -144,11 +167,11 @@ export default function Footer() {
 
         <div className="mt-20 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-['Ubuntu',Helvetica,sans-serif] font-normal text-[22px] leading-[33px] text-white">
-            Copyright © EatFlow. | Designed By VictorFlow - Powered By Next.js
+            Copyright © <Link href="/" className="hover:text-orange transition-colors">EatFlow</Link>. | Designed By <a href="https://victorflow.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors">VictorFlow</a> - Powered By <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors">Next.js</a>
           </p>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-orange text-white hover:bg-orange/90 transition shadow-lg shrink-0"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-orange text-white hover:bg-green hover:cursor-pointer transition shadow-lg shrink-0"
             aria-label="Back to top"
           >
             <img src="/images/footer- top arrow-icon.svg" alt="Up Arrow" className="h-[12PX] w-[19PX]" />

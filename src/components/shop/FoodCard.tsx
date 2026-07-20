@@ -12,7 +12,7 @@ export default function FoodCard({ item, searchQuery = "" }: { item: FoodItem, s
   const renderHighlighted = (text: string, highlight: string) => {
     if (!highlight.trim()) return text;
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
-    return parts.map((part, index) => 
+    return parts.map((part, index) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
         <span key={index} className="text-orange">{part}</span>
       ) : (
@@ -45,9 +45,9 @@ export default function FoodCard({ item, searchQuery = "" }: { item: FoodItem, s
       {/* Image */}
       <div className="relative shrink-0 self-start sm:self-center">
         <div className="flex size-[120px] items-center justify-center rounded-full overflow-hidden border-4 border-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] bg-white">
-           <div className="relative h-full w-full">
-             <Image src={image} alt={name} fill sizes="120px" className="object-cover" />
-           </div>
+          <div className="relative h-full w-full">
+            <Image src={image} alt={name} fill sizes="120px" className="object-cover" />
+          </div>
         </div>
       </div>
 

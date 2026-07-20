@@ -1,5 +1,6 @@
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 const items = [
   { name: "Pepper Chicken", desc: "Chicken, black pepper, onions, spices", price: "$ 56.82 USD", image: "/images/shop-image-01.png" },
@@ -65,8 +66,9 @@ export default function MenuSection() {
         <div className="flex flex-col justify-between lg:h-[580px]">
           <div className="flex flex-col">
             {items.map((item, i) => (
-              <div
-                key={item.name}
+              <Link 
+                href={`/shop/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}
+                key={item.name} 
                 className={`group flex cursor-pointer items-center gap-5 sm:gap-6 ${i !== 0 ? 'pt-6' : ''} ${i !== items.length - 1 ? 'pb-6 border-b border-[#f0f0f0]' : ''}`}
               >
                 <div className="flex h-[80px] w-[80px] shrink-0 items-center justify-center rounded-full bg-white drop-shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-transparent transition-colors group-hover:border-orange">
@@ -86,12 +88,12 @@ export default function MenuSection() {
                     {item.desc}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
           <div className="mt-8 flex justify-start">
-            <Button href="#" variant="ink" className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
+            <Button href="/shop" variant="ink" className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
           </div>
         </div>
       </div>
@@ -104,8 +106,9 @@ export default function MenuSection() {
           <div className="flex flex-col justify-between lg:h-[580px] mt-[100px] order-2 lg:order-1 pt-12 lg:pt-0">
             <div className="flex flex-col">
               {mainCourseItems.map((item, i) => (
-                <div
-                  key={item.name}
+                <Link 
+                  href={`/shop/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}
+                  key={item.name} 
                   className={`group flex cursor-pointer items-center gap-5 sm:gap-6 ${i !== 0 ? 'pt-6' : ''} ${i !== mainCourseItems.length - 1 ? 'pb-6 border-b border-[#f0f0f0]' : ''}`}
                 >
                   <div className="flex min-w-0 flex-1 flex-col justify-center">
@@ -125,12 +128,12 @@ export default function MenuSection() {
                   <div className="flex h-[80px] w-[80px] shrink-0 items-center justify-center rounded-full bg-white drop-shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-transparent transition-colors group-hover:border-orange">
                     <img src={item.image} alt={item.name} className="h-[70px] w-[70px] rounded-full object-cover" />
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
             <div className="mt-8 flex justify-start">
-              <Button href="#" variant="ink" className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
+              <Button href="/shop" variant="ink" className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
             </div>
           </div>
 

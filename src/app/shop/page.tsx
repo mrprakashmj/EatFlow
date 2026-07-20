@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import OrderHero from "@/components/order-online/OrderHero";
-import MenuBrowser from "@/components/order-online/MenuBrowser";
+import OrderHero from "@/components/shop/OrderHero";
+import MenuBrowser from "@/components/shop/MenuBrowser";
 
 export const metadata: Metadata = {
   title: "Shop | EatFlow",

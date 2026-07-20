@@ -1,4 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext";
+import { menuItems } from "@/data/menu";
 
 const categories = [
   { label: "All" },
@@ -8,10 +13,10 @@ const categories = [
 ];
 
 const socials = [
-  { label: "Instagram", icon: "/images/Shop social Icon 1.svg", hoverIcon: "/images/Shop social Icon 1 hovor.svg" },
-  { label: "Facebook", icon: "/images/Shop social Icon 2.svg", hoverIcon: "/images/Shop social Icon 2 hovor.svg" },
-  { label: "Twitter", icon: "/images/Shop social Icon 3.svg", hoverIcon: "/images/Shop social Icon 3 hovor.svg" },
-  { label: "Pinterest", icon: "/images/Shop social Icon 4.svg", hoverIcon: "/images/Shop social Icon 4 hovor.svg" },
+  { label: "Instagram", icon: "/images/Shop social Icon 1.svg", hoverIcon: "/images/Shop social Icon 1 hovor.svg", href: "https://instagram.com" },
+  { label: "Facebook", icon: "/images/Shop social Icon 2.svg", hoverIcon: "/images/Shop social Icon 2 hovor.svg", href: "https://facebook.com" },
+  { label: "Twitter", icon: "/images/Shop social Icon 3.svg", hoverIcon: "/images/Shop social Icon 3 hovor.svg", href: "https://twitter.com" },
+  { label: "Pinterest", icon: "/images/Shop social Icon 4.svg", hoverIcon: "/images/Shop social Icon 4 hovor.svg", href: "https://pinterest.com" },
 ];
 
 export default function MenuSidebar({ 
@@ -21,6 +26,10 @@ export default function MenuSidebar({
   activeCategory: string; 
   onCategoryChange: (category: string) => void;
 }) {
+  const { addToCart } = useCart();
+  const offerItem = menuItems.find(item => item.name === "Broccoli with Meat");
+  const [isAdded, setIsAdded] = useState(false);
+
   return (
     <aside className="content-sidebar flex w-full flex-col gap-12">
       {/* Menu categories */}
@@ -78,9 +87,14 @@ export default function MenuSidebar({
           </p>
           <button
             type="button"
+            onClick={() => {
+              if (offerItem) addToCart(offerItem);
+              setIsAdded(true);
+              setTimeout(() => setIsAdded(false), 2000);
+            }}
             className="mt-6 bg-ink px-10 py-3.5 font-inter text-[16px] font-bold text-white transition-colors hover:bg-orange hover:cursor-pointer"
           >
-            Order Now
+            {isAdded ? "Added" : "Order Now"}
           </button>
         </div>
       </div>
@@ -89,10 +103,12 @@ export default function MenuSidebar({
       <div className="border-b border-hairline/60 pb-10">
         <h3 className="font-ubuntu text-[22px] font-bold leading-[33px] text-ink">Follow Us</h3>
         <ul className="mt-8 flex flex-wrap gap-4">
-          {socials.map(({ label, icon, hoverIcon }) => (
+          {socials.map(({ label, icon, hoverIcon, href }) => (
             <li key={label}>
               <a
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative flex items-center gap-2.5 rounded-full border border-hairline/60 px-5 py-2.5 text-[15px] text-ink transition-colors hover:border-orange hover:bg-orange hover:text-white"
               >
                 <div className="relative size-4">

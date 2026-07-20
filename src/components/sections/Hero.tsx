@@ -47,8 +47,8 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex flex-wrap gap-5">
-          <Button href="#" variant="green" className="hover:bg-[#fb5629]">Online Ordering</Button>
-          <Button href="#" variant="orange" className="hover:bg-[#ffce53]">Reserve Table</Button>
+          <Button href="/menu" variant="green" className="hover:bg-[#fb5629]">Online Ordering</Button>
+          <Button href="/reservation" variant="orange" className="hover:bg-[#ffce53]">Reserve Table</Button>
         </div>
 
         {/* Stacked food avatars + rating */}

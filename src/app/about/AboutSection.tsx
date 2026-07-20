@@ -76,7 +76,7 @@ export default function AboutSection() {
         </div>
 
         <div className="flex flex-wrap items-center gap-8 pt-2">
-          <Button href="#order" variant="ink" className="hover:!bg-[#ffce53] hover:!text-ink">Online Ordering</Button>
+          <Button href="/shop" variant="ink" className="hover:!bg-[#ffce53] hover:!text-ink">Online Ordering</Button>
 
           <a
             href="tel:5646434345"

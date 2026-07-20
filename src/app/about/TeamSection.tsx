@@ -51,7 +51,7 @@ export default function TeamSection() {
           align="left"
         />
         <a
-          href="#join"
+          href="/contact"
           className="inline-flex items-center justify-center bg-orange px-8 py-4 font-ubuntu text-base font-medium text-white transition-colors hover:bg-ink shrink-0"
         >
           Join Our Team

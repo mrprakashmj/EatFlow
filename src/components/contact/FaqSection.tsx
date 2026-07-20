@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Plus, Minus, ArrowUpRight } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
+import Link from "next/link";
 
 const faqs = [
   {
@@ -60,9 +61,9 @@ export default function FaqSection() {
                 </div>
               </div>
 
-              <button className="shrink-0 flex items-center justify-center rounded-full bg-ink text-white w-12 h-12 hover:bg-orange transition-colors">
+              <Link href="/contact" className="shrink-0 flex items-center justify-center rounded-full bg-ink text-white w-12 h-12 hover:bg-orange transition-colors">
                 <ArrowUpRight className="w-5 h-5" />
-              </button>
+              </Link>
             </div>
           </div>
 

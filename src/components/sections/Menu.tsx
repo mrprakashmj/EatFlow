@@ -1,5 +1,6 @@
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 const items = [
   { name: "Pepper Chicken", desc: "Chicken, black pepper, onions, spices", price: "$ 56.82 USD", image: "/images/shop-image-01.png" },
@@ -48,7 +49,8 @@ export default function Menu() {
         <div className="mt-10 flex flex-col justify-between lg:mt-0 lg:h-[580px]">
           <div className="flex flex-col">
             {items.map((item, i) => (
-              <div 
+              <Link 
+                href={`/shop/${item.name.toLowerCase().replace(/ /g, '-')}`}
                 key={item.name} 
                 className={`group flex cursor-pointer items-center gap-5 sm:gap-6 ${i !== 0 ? 'pt-6' : ''} ${i !== items.length - 1 ? 'pb-6 border-b border-[#f0f0f0]' : ''}`}
               >
@@ -69,12 +71,12 @@ export default function Menu() {
                     {item.desc}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
           <div className="mt-8">
-            <Button href="#" variant="orange" className="hover:bg-green">View Full Menu</Button>
+            <Button href="/menu" variant="orange" className="hover:bg-green">View Full Menu</Button>
           </div>
         </div>
       </div>

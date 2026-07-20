@@ -49,4 +49,12 @@ export const POSTS: BlogPost[] = [
     date: "12 Sep 2024",
     image: "/images/recent post image four.jpg",
   },
+  {
+    id: "7",
+    title: "Local Flavors: Exploring Regional Delicacies Together",
+    excerpt: "Join us on a journey through local cuisine, celebrating the diverse flavors of our region.",
+    tag: "Food",
+    date: "12 Sep 2024",
+    image: "/images/blog-thumbnail-01.jpg",
+  },
 ];

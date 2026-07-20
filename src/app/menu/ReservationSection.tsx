@@ -1,6 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import Button from "@/components/ui/Button";
 
 export default function ReservationSection() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
   return (
     <section className="w-full bg-yellow py-16 lg:py-24">
       <div className="mx-auto flex max-w-[1600px] flex-col items-center gap-10 px-6 lg:flex-row lg:items-center lg:gap-20">
@@ -17,12 +26,31 @@ export default function ReservationSection() {
 
         {/* Right Side: Form */}
         <div className="w-full lg:w-2/3">
-          <form className="flex flex-col gap-4">
+        {isSubmitted ? (
+          <div className="flex flex-col items-center justify-center gap-6 bg-white/10 p-8 sm:p-12 text-center h-full min-h-[300px] rounded-2xl border border-white/20 shadow-xl backdrop-blur-sm">
+            <div className="flex size-[80px] items-center justify-center rounded-full bg-green text-white shadow-[0_0_20px_rgba(43,185,55,0.4)]">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[32px] text-ink">Table Reserved!</h3>
+              <p className="mt-3 font-[family-name:var(--font-inter)] text-[16px] text-ink/80 max-w-[400px] mx-auto leading-relaxed">
+                Thank you for choosing Eatflow. We have received your reservation request and will contact you shortly to confirm details.
+              </p>
+            </div>
+            <Button onClick={() => setIsSubmitted(false)} variant="ink" className="mt-4 hover:bg-green">
+              Book Another Table
+            </Button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Top Row */}
             <div className="flex flex-col gap-4 sm:flex-row">
               <input
                 type="text"
                 placeholder="Name"
+                required
                 className="h-[55px] w-full bg-white px-5 font-[family-name:var(--font-inter)] text-[16px] text-ink outline-none placeholder:text-ink/60 focus:ring-1 focus:ring-ink sm:w-1/2"
               />
               <div className="flex w-full gap-4 sm:w-1/2">
@@ -30,6 +58,7 @@ export default function ReservationSection() {
                   <input
                     type="text"
                     placeholder="yyyy/mm/dd"
+                    required
                     className="h-[55px] w-full bg-white px-5 pr-10 font-[family-name:var(--font-inter)] text-[16px] text-ink outline-none placeholder:text-ink/60 focus:ring-1 focus:ring-ink"
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
@@ -45,6 +74,7 @@ export default function ReservationSection() {
                   <input
                     type="text"
                     placeholder="00.00-pm"
+                    required
                     className="h-[55px] w-full bg-white px-5 pr-10 font-[family-name:var(--font-inter)] text-[16px] text-ink outline-none placeholder:text-ink/60 focus:ring-1 focus:ring-ink"
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
@@ -62,11 +92,13 @@ export default function ReservationSection() {
               <input
                 type="tel"
                 placeholder="Phone Number"
+                required
                 className="h-[55px] w-full bg-white px-5 font-[family-name:var(--font-inter)] text-[16px] text-ink outline-none placeholder:text-ink/60 focus:ring-1 focus:ring-ink sm:w-1/2"
               />
               <div className="relative w-full sm:w-1/2">
                 <select 
                   defaultValue=""
+                  required
                   className="h-[55px] w-full appearance-none bg-white px-5 pr-10 font-[family-name:var(--font-inter)] text-[16px] text-ink/60 outline-none focus:ring-1 focus:ring-ink"
                 >
                   <option value="" disabled hidden>No of Person</option>
@@ -85,11 +117,12 @@ export default function ReservationSection() {
 
             {/* Submit Button */}
             <div className="mt-2 flex justify-center">
-               <Button type="button" variant="ink" className="h-[55px] px-10 hover:bg-green hover:text-white">
+               <Button type="submit" variant="ink" className="h-[55px] px-10 hover:bg-green hover:text-white">
                  Book A Table
                </Button>
             </div>
           </form>
+        )}
         </div>
 
       </div>

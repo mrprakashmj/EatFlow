@@ -69,7 +69,7 @@ export default function Offers() {
                   Burger
                 </p>
                 <div className="mt-3 flex justify-end">
-                  <Link href="#" className="flex h-[45px] w-[130px] items-center justify-center bg-orange font-heading font-medium text-[16px] text-white transition-colors hover:bg-green">
+                  <Link href="/menu" className="flex h-[45px] w-[130px] items-center justify-center bg-orange font-heading font-medium text-[16px] text-white transition-colors hover:bg-green">
                     Order Now
                   </Link>
                 </div>
@@ -93,7 +93,7 @@ export default function Offers() {
                 <p className="mt-1 font-[family-name:var(--font-inter)] font-black text-[45px] uppercase leading-tight text-ink">
                   Noodles
                 </p>
-                <Link href="#" className="mt-3 flex h-[45px] w-[130px] items-center justify-center bg-[#111] font-heading font-medium text-[16px] text-white transition-colors hover:bg-green">
+                <Link href="/menu" className="mt-3 flex h-[45px] w-[130px] items-center justify-center bg-[#111] font-heading font-medium text-[16px] text-white transition-colors hover:bg-green">
                   Order Now
                 </Link>
               </div>
@@ -115,7 +115,7 @@ export default function Offers() {
             </div>
 
             <div className="relative z-10 mt-6 flex justify-center sm:ml-12 sm:mt-0">
-              <Link href="#" className="flex h-[45px] w-[140px] items-center justify-center bg-white font-heading font-bold text-[17px] text-ink transition-colors hover:bg-orange hover:text-white ">
+              <Link href="/menu" className="flex h-[45px] w-[140px] items-center justify-center bg-white font-heading font-bold text-[17px] text-ink transition-colors hover:bg-orange hover:text-white ">
                 Order Now
               </Link>
             </div>

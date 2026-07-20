@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function FeaturedBlog() {
   return (
@@ -6,14 +7,14 @@ export default function FeaturedBlog() {
       <div className="mx-auto max-w-[1200px] px-6 sm:px-10 lg:px-0">
         <div className="bg-[#FFF2D4] p-[30px] lg:pr-[80px] grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image */}
-          <div className="relative  w-full aspect-[4/3]">
+          <Link href="/blog/7" className="relative w-full aspect-[4/3] block cursor-pointer transition-transform hover:scale-[1.02]">
             <Image
               src="/images/blog-thumbnail-01.jpg"
               alt="Local Flavors: Exploring Regional Delicacies Together"
               fill
               className="object-cover"
             />
-          </div>
+          </Link>
 
           {/* Content */}
           <div>
@@ -23,9 +24,11 @@ export default function FeaturedBlog() {
               </span>
             </div>
 
-            <h2 className="mt-[10px]  font-ubuntu font-bold leading-[1.3] text-[#0d0c1e] text-2xl sm:text-3xl lg:text-[32px]">
-              Local Flavors: Exploring Regional Delicacies Together
-            </h2>
+            <Link href="/blog/7">
+              <h2 className="mt-[10px] font-ubuntu font-bold leading-[1.3] text-[#0d0c1e] text-2xl sm:text-3xl lg:text-[32px] hover:text-orange transition-colors">
+                Local Flavors: Exploring Regional Delicacies Together
+              </h2>
+            </Link>
 
             <p className="mt-5 font-inter font-normal leading-[1.5] text-[#4c4a49] text-base sm:text-lg">
               Join us on a journey through local cuisine, celebrating the diverse

@@ -1,8 +1,18 @@
+"use client";
+
+import { useState } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { Mail, Clock3, Phone } from "lucide-react";
 import Image from "next/image";
 
 export default function BookingSection() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
+
   return (
     <section className="bg-white">
       <div className="container mx-auto max-w-[1200px] px-6 py-20 md:py-28">
@@ -10,16 +20,39 @@ export default function BookingSection() {
           
           {/* Form column */}
           <div className="bg-[#f2f2f2] p-8 md:p-10 lg:p-12 order-2 lg:order-1">
-            <form className="flex flex-col gap-5">
+            {isSubmitted ? (
+              <div className="flex flex-col items-center justify-center gap-6 text-center h-full min-h-[300px]">
+                <div className="flex size-[80px] items-center justify-center rounded-full bg-green text-white shadow-[0_0_20px_rgba(43,185,55,0.4)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[32px] text-ink">Table Reserved!</h3>
+                  <p className="mt-3 font-[family-name:var(--font-inter)] text-[16px] text-ink/80 max-w-[400px] mx-auto leading-relaxed">
+                    Thank you for choosing Eatflow. We have received your reservation request and will contact you shortly to confirm details.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsSubmitted(false)}
+                  className="mt-4 w-full bg-ink text-white font-inter font-bold text-[18px] leading-[27px] py-4 hover:bg-orange transition-colors cursor-pointer"
+                >
+                  Book Another Table
+                </button>
+              </div>
+            ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <input
                 type="text"
                 name="name"
+                required
                 placeholder="Name"
                 className="w-full bg-white px-5 py-4 font-inter font-normal text-[16px] leading-[24px] text-ink placeholder:text-ink/70 outline-none focus:ring-1 focus:ring-orange"
               />
               <input
                 type="email"
                 name="email"
+                required
                 placeholder="Email"
                 className="w-full bg-white px-5 py-4 font-inter font-normal text-[16px] leading-[24px] text-ink placeholder:text-ink/70 outline-none focus:ring-1 focus:ring-orange"
               />
@@ -27,12 +60,14 @@ export default function BookingSection() {
                 <input
                   type="tel"
                   name="phone"
+                  required
                   placeholder="Phone"
                   className="w-full bg-white px-5 py-4 font-inter font-normal text-[16px] leading-[24px] text-ink placeholder:text-ink/70 outline-none focus:ring-1 focus:ring-orange"
                 />
                 <div className="relative">
                   <select
                     name="guests"
+                    required
                     className="w-full bg-white px-5 py-4 font-inter font-normal text-[16px] leading-[24px] text-ink placeholder:text-ink/70 outline-none focus:ring-1 focus:ring-orange appearance-none"
                     defaultValue=""
                   >
@@ -51,18 +86,21 @@ export default function BookingSection() {
                 <input
                   type="text"
                   name="date"
+                  required
                   placeholder="yyyy/mm/dd"
                   className="w-full bg-white px-5 py-4 font-inter font-normal text-[16px] leading-[24px] text-ink placeholder:text-ink/70 outline-none focus:ring-1 focus:ring-orange"
                 />
                 <input
                   type="text"
                   name="time"
+                  required
                   placeholder="00.00-pm"
                   className="w-full bg-white px-5 py-4 font-inter font-normal text-[16px] leading-[24px] text-ink placeholder:text-ink/70 outline-none focus:ring-1 focus:ring-orange"
                 />
               </div>
               <textarea
                 name="request"
+                required
                 placeholder="Your message..."
                 rows={5}
                 className="w-full bg-white px-5 py-4 font-inter font-normal text-[16px] leading-[24px] text-ink placeholder:text-ink/70 resize-none outline-none focus:ring-1 focus:ring-orange"
@@ -74,6 +112,7 @@ export default function BookingSection() {
                 Book A Table
               </button>
             </form>
+            )}
           </div>
 
           {/* Content column */}

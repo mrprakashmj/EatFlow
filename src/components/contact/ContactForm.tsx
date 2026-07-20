@@ -1,14 +1,23 @@
+"use client";
+
+import { useState } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { Clock, Mail } from "lucide-react";
 import Image from "next/image";
 
 const socials = [
-  { img: "/images/popup-icon-04.svg", href: "#", label: "Instagram" },
-  { img: "/images/popup-icon-01.svg", href: "#", label: "Facebook" },
-  { img: "/images/popup-icon-03.svg", href: "#", label: "X" },
+  { img: "/images/popup-icon-04.svg", href: "https://www.instagram.com", label: "Instagram" },
+  { img: "/images/popup-icon-01.svg", href: "https://www.facebook.com", label: "Facebook" },
+  { img: "/images/popup-icon-03.svg", href: "https://www.x.com", label: "X" },
 ];
 
 export default function ContactForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
   return (
     <section className="bg-white">
       <div className="container mx-auto max-w-[1200px] px-6 py-20 md:py-28">
@@ -28,7 +37,7 @@ export default function ContactForm() {
                 </span>
                 <div>
                   <p className="font-inter font-medium text-ink text-[18px] leading-[150%]">For Booking</p>
-                  <p className="font-ubuntu font-bold text-ink text-[30px] leading-[150%] ">(564)-643-4345</p>
+                  <a href="tel:5646434345" className="font-ubuntu font-bold text-ink text-[30px] leading-[150%] hover:text-orange transition-colors block">(564)-643-4345</a>
                 </div>
               </div>
 
@@ -38,7 +47,7 @@ export default function ContactForm() {
                 </span>
                 <div>
                   <p className="font-inter font-medium text-ink text-[18px] leading-[150%]">For Private Dining</p>
-                  <p className="font-ubuntu font-bold text-ink text-[30px] leading-[150%]">info@eatflow.com</p>
+                  <a href="mailto:info@eatflow.com" className="font-ubuntu font-bold text-ink text-[30px] leading-[150%] hover:text-orange transition-colors block">info@eatflow.com</a>
                 </div>
               </div>
             </div>
@@ -51,6 +60,8 @@ export default function ContactForm() {
                     key={label}
                     href={href}
                     aria-label={label}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-center rounded-full bg-ink w-12 h-12 hover:bg-orange transition-colors"
                   >
                     <img src={img} alt={label} className="w-5 h-5 object-contain" />
@@ -74,7 +85,28 @@ export default function ContactForm() {
 
           {/* Form column */}
           <div className="bg-[#f2f2f2] p-8 md:p-12">
-            <form className="space-y-6">
+            {isSubmitted ? (
+              <div className="flex flex-col items-center justify-center gap-6 text-center h-full min-h-[300px]">
+                <div className="flex size-[80px] items-center justify-center rounded-full bg-green text-white shadow-[0_0_20px_rgba(43,185,55,0.4)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-['Ubuntu',Helvetica,sans-serif] font-bold text-[32px] text-ink">Message Sent!</h3>
+                  <p className="mt-3 font-[family-name:var(--font-inter)] text-[16px] text-ink/80 max-w-[400px] mx-auto leading-relaxed">
+                    Thank you for contacting Eatflow. We have received your message and will get back to you shortly.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsSubmitted(false)}
+                  className="mt-4 w-full bg-orange text-white font-inter font-bold text-[20px] leading-[30px] py-4 hover:bg-green transition-colors cursor-pointer"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="font-ubuntu font-medium text-ink text-[20px] leading-[30px] block mb-3">
                   Name
@@ -82,6 +114,7 @@ export default function ContactForm() {
                 <input
                   id="name"
                   type="text"
+                  required
                   placeholder="Your name"
                   className="w-full bg-white px-5 py-4 font-inter font-normal text-[20px] leading-[29px] text-ink placeholder:text-ink/60 outline-none focus:ring-1 focus:ring-orange"
                 />
@@ -94,6 +127,7 @@ export default function ContactForm() {
                 <input
                   id="phone"
                   type="tel"
+                  required
                   placeholder="+589 852 3874"
                   className="w-full bg-white px-5 py-4 font-inter font-normal text-[20px] leading-[29px] text-ink placeholder:text-ink/60 outline-none focus:ring-1 focus:ring-orange"
                 />
@@ -106,6 +140,7 @@ export default function ContactForm() {
                 <input
                   id="email"
                   type="email"
+                  required
                   placeholder="Your email"
                   className="w-full bg-white px-5 py-4 font-inter font-normal text-[20px] leading-[29px] text-ink placeholder:text-ink/60 outline-none focus:ring-1 focus:ring-orange"
                 />
@@ -118,6 +153,7 @@ export default function ContactForm() {
                 <textarea
                   id="message"
                   rows={6}
+                  required
                   placeholder="Your message..."
                   className="w-full bg-white px-5 py-4 font-inter font-normal text-[20px] leading-[29px] text-ink placeholder:text-ink/60 outline-none focus:ring-1 focus:ring-orange resize-none"
                 />
@@ -130,6 +166,7 @@ export default function ContactForm() {
                 Send Message
               </button>
             </form>
+            )}
           </div>
           
         </div>

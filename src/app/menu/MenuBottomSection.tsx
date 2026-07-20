@@ -1,4 +1,5 @@
 import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 const dessertItems = [
   { name: "Pot Rice", desc: "Rice, vegetables, spices, oil, salt", price: "$ 10.38 USD", image: "/images/shop-image-03.png" },
@@ -40,7 +41,8 @@ export default function MenuBottomSection() {
           <div className="flex flex-col justify-between  mt-[100px] lg:h-[580px] pt-12 lg:pt-0">
             <div className="flex flex-col">
               {dessertItems.map((item, i) => (
-                <div 
+                <Link 
+                  href={`/shop/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}
                   key={item.name} 
                   className={`group flex cursor-pointer items-center gap-5 sm:gap-6 ${i !== 0 ? 'pt-6' : ''} ${i !== dessertItems.length - 1 ? 'pb-6 border-b border-[#f0f0f0]' : ''}`}
                 >
@@ -61,12 +63,12 @@ export default function MenuBottomSection() {
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
             <div className="mt-8 flex justify-start">
-              <Button href="#" variant="ink"className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
+              <Button href="/shop" variant="ink" className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
             </div>
           </div>
 
@@ -81,7 +83,8 @@ export default function MenuBottomSection() {
           <div className="flex flex-col justify-between lg:h-[580px] mt-[100px] order-2 lg:order-1 pt-12 lg:pt-0">
             <div className="flex flex-col">
               {beverageItems.map((item, i) => (
-                <div 
+                <Link 
+                  href={`/shop/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}
                   key={item.name} 
                   className={`group flex cursor-pointer items-center gap-5 sm:gap-6 ${i !== 0 ? 'pt-6' : ''} ${i !== beverageItems.length - 1 ? 'pb-6 border-b border-[#f0f0f0]' : ''}`}
                 >
@@ -102,12 +105,12 @@ export default function MenuBottomSection() {
                   <div className="flex h-[80px] w-[80px] shrink-0 items-center justify-center rounded-full bg-white drop-shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-transparent transition-colors group-hover:border-orange">
                     <img src={item.image} alt={item.name} className="h-[70px] w-[70px] rounded-full object-cover" />
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
             <div className="mt-8 flex justify-start">
-              <Button href="#" variant="ink"className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
+              <Button href="/shop" variant="ink" className="hover:bg-[#fb5629] hover:text-white transition-all duration-300 ease-in-out">Order Now</Button>
             </div>
           </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 const dishes = [
@@ -19,6 +20,36 @@ export default function Category() {
   
   const nextSlide = () => setCurrentIndex(prev => (prev >= maxIndex ? 0 : prev + 1));
   const prevSlide = () => setCurrentIndex(prev => (prev <= 0 ? maxIndex : prev - 1));
+
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    setTouchStart(clientX);
+    setTouchEnd(null);
+  };
+
+  const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (touchStart === null) return;
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    setTouchEnd(clientX);
+  };
+
+  const handleDragEnd = () => {
+    if (touchStart === null || touchEnd === null) {
+      setTouchStart(null);
+      return;
+    }
+    const distance = touchStart - touchEnd;
+    if (distance > 50) {
+      nextSlide();
+    } else if (distance < -50) {
+      prevSlide();
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   return (
     <section id="menu" className="mx-auto max-w-[1200px] px-6 py-20 lg:py-28">
@@ -43,7 +74,17 @@ export default function Category() {
         </div>
       </div>
 
-      <div className="mt-14 overflow-hidden" style={{ "--slide-index": currentIndex } as React.CSSProperties}>
+      <div 
+        className="mt-14 overflow-hidden cursor-grab active:cursor-grabbing" 
+        style={{ "--slide-index": currentIndex } as React.CSSProperties}
+        onMouseDown={handleDragStart}
+        onMouseMove={handleDragMove}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={() => setTouchStart(null)}
+        onTouchStart={handleDragStart}
+        onTouchMove={handleDragMove}
+        onTouchEnd={handleDragEnd}
+      >
         <div className="flex gap-8 transition-transform duration-500 ease-in-out translate-x-[calc(var(--slide-index)*-100%_-_var(--slide-index)*2rem)] sm:translate-x-[calc(var(--slide-index)*-50%_-_var(--slide-index)*1rem)] lg:translate-x-[calc(var(--slide-index)*-33.3333%_-_var(--slide-index)*0.6667rem)]">
           {dishes.map((dish, index) => (
             <div
@@ -58,12 +99,12 @@ export default function Category() {
               {dish.name}
             </h4>
 
-            <button aria-label={`Order ${dish.name}`} className="group/btn relative flex h-[50px] w-[50px] overflow-hidden items-center rounded-full bg-orange px-[15px] text-white shadow-md transition-all duration-300 hover:w-[150px]">
+            <Link href={`/shop/${dish.name.toLowerCase().replace(/ /g, '-')}`} aria-label={`Order ${dish.name}`} className="group/btn relative flex h-[50px] w-[50px] overflow-hidden items-center rounded-full bg-orange px-[15px] text-white shadow-md transition-all duration-300 hover:w-[150px]">
               <span className="font-sans font-medium whitespace-nowrap opacity-0 transition-all duration-300 group-hover/btn:opacity-100 cursor-pointer">
                 Order Now
               </span>
               <ArrowRight className="absolute right-[15px] h-5 w-5 shrink-0" />
-            </button>
+            </Link>
           </div>
         ))}
       </div>

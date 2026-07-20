@@ -23,9 +23,9 @@ interface EventDetailSidebarProps {
 }
 
 const socials = [
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Facebook, label: "Facebook", href: "#" },
-  { icon: XLogo, label: "X", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com" },
+  { icon: Facebook, label: "Facebook", href: "https://www.facebook.com" },
+  { icon: XLogo, label: "X", href: "https://www.x.com" },
 ];
 
 export default function EventDetailSidebar({
